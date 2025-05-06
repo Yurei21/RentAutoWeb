@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('maintenances', function (Blueprint $table) {
-            $table->id();
+        Schema::create('maintenance', function (Blueprint $table) {
+            $table->id('maintenance_id');
+            $table->foreignId('vehicle_id')->constrained('vehicles', 'vehicle_id')->onDelete('cascade');
+            $table->timestamp('maintenance_date')->useCurrent()->nullable();
+            $table->text('details');
+            $table->decimal('cost', 10, 2);
             $table->timestamps();
         });
     }

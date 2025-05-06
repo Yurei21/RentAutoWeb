@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('rental_id');
             $table->foreignId('user_id')->constrained('users', 'user_id')->onDelete('cascade');
             $table->foreignId('vehicle_id')->constrained('vehicles', 'vehicle_id')->onDelete('cascade');
-            $table->timestamp('rental_start_date');
-            $table->timestamp('rental_end_date');
+            $table->timestamp('rental_start_date')->nullable();
+            $table->timestamp('rental_end_date')->nullable();
             $table->enum('payment_status', ['Pending', 'Paid'])->default('Paid');
             $table->enum('status', ['Ongoing','Completed'])->default('Ongoing');
             $table->enum('carstatus', ['In-use', 'Returned'])->default('In-use');

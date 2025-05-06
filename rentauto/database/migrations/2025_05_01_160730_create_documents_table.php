@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
+            $table->id('document_id');
+            $table->foreignId('user_id')->constrained('users', 'user_id');
+            $table->enum('document_type', ['Driver License', 'ID Card', 'Passport']);
+            $table->string('document_url');
+            $table->timestamp('upload_date')->useCurrent()->nullable();
             $table->timestamps();
         });
     }
