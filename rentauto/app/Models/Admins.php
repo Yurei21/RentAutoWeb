@@ -15,8 +15,8 @@ class Admins extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\AdminsFactory> */
     use HasFactory, Notifiable;
-
-    protected $table = 'admins'; // important if your table isn't "admins" by Laravel convention
+    protected $primaryKey = 'admin_id';
+    protected $guard = 'admin';
 
     protected $fillable = [
         'name', 'email', 'password',
@@ -30,26 +30,4 @@ class Admins extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function getEmailForVerification()
-    {
-        return $this->email;
-    }
-
-    public function hasVerifiedEmail()
-    {
-        return !is_null($this->email_verified_at);
-    }
-
-    public function markEmailAsVerified()
-    {
-        return $this->forceFill([
-            'email_verified_at' => Carbon::now(),
-        ])->save();
-    }
-
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new VerifyEmail);
-    }
 }
