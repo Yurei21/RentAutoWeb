@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('document_type', ['Driver License', 'ID Card', 'Passport']);
+            $table->string('document_path');
+            $table->timestamp('upload_date')->useCurrent();
             $table->timestamps();
         });
     }

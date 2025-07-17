@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('vehicle_id')->constrained('vehicles')->onDelete('cascade');
+            $table->timestamp('rental_start_date');
+            $table->timestamp('rental_end_date');
+            $table->decimal('total_cost', '10', '2');
+            $table->enum('payment_status', ['Pending', 'Paid'])->default('Pending');
+            $table->enum('status', ['Ongoing', 'Completed'])->default('On-going');
+            $table->int('barcode')->unique();
             $table->timestamps();
         });
     }

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->foreign('rental_id')->constrained('rentals')->onDelete('cascade');
+            $table->decimal('amount_paid', '10', '2');
+            $table->enum('payment_method', ['Cash', 'Credit Card', 'Online']);
+            $table->timestamp('payment_date');
+            $table->enum('pay_status', ['Paid', 'Pending'])->default('pending');
+            $table->decimal('additionalOrLate_fee', 10, 2);
             $table->timestamps();
         });
     }
