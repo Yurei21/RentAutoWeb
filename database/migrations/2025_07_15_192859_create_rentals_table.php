@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('vehicle_id')->constrained('vehicles')->onDelete('cascade');
-            $table->timestamp('rental_start_date');
-            $table->timestamp('rental_end_date');
+            $table->timestamp('rental_start_date')->useCurrent();
+            $table->timestamp('rental_end_date')->nullable();
             $table->decimal('total_cost', '10', '2');
             $table->enum('payment_status', ['Pending', 'Paid'])->default('Pending');
-            $table->enum('status', ['Ongoing', 'Completed'])->default('On-going');
-            $table->int('barcode')->unique();
+            $table->enum('status', ['Ongoing', 'Completed'])->default('Ongoing');
+            $table->integer('barcode')->unique();
             $table->timestamps();
         });
     }
