@@ -15,6 +15,7 @@ class AdminVerifyEmailController extends Controller
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
+        /** @var \Illuminate\Contracts\Auth\MustVerifyEmail $admin */
         $admin = Auth::guard('admin')->user();
 
         if ($admin->hasVerifiedEmail()) {
