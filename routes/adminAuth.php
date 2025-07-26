@@ -38,4 +38,4 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
     Route::get('verify-email', AdminEmailVerificationPromptController::class)->name('verification.notice');
     Route::get('verify-email/{id}/{hash}', [AdminVerifyEmailController::class, '__invoke'])->middleware(['signed'])->name('verification.verify');
     Route::post('email/verification-notification', [AdminEmailVerificationNotificationController::class, 'store'])->middleware(['throttle:6,1'])->name('verification.send');
-});
+}); 
