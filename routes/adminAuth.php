@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\Auth\AdminConfirmablePasswordController;
-use App\Http\Controllers\Auth\AdminRegisteredUserController;
-use App\Http\Controllers\Auth\AdminAuthenticatedSessionController;
-use App\Http\Controllers\Auth\AdminEmailVerificationPromptController;
-use App\Http\Controllers\Auth\AdminEmailVerificationNotificationController;
-use App\Http\Controllers\Auth\AdminVerifyEmailController;
-use App\Http\Controllers\Auth\AdminPasswordController;
-use App\Http\Controllers\Auth\AdminPasswordResetLinkController;
-use App\Http\Controllers\Auth\AdminNewPasswordController;
+use App\Http\Controllers\Admin\AdminConfirmablePasswordController;
+use App\Http\Controllers\Admin\AdminRegisteredUserController;
+use App\Http\Controllers\Admin\AdminAuthenticatedSessionController;
+use App\Http\Controllers\Admin\AdminEmailVerificationPromptController;
+use App\Http\Controllers\Admin\AdminEmailVerificationNotificationController;
+use App\Http\Controllers\Admin\AdminVerifyEmailController;
+use App\Http\Controllers\Admin\AdminPasswordController;
+use App\Http\Controllers\Admin\AdminPasswordResetLinkController;
+use App\Http\Controllers\Admin\AdminNewPasswordController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin')->middleware('guest:admin')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('guest:admin')->group(function () {
     Route::get('register', [AdminRegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [AdminRegisteredUserController::class, 'store']);
 
@@ -26,7 +26,7 @@ Route::prefix('admin')->name('admin')->middleware('guest:admin')->group(function
 });
 
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
-        Route::get('verify-email', AdminEmailVerificationPromptController::class)->name('verification.notice');
+    Route::get('verify-email', AdminEmailVerificationPromptController::class)->name('verification.notice');
     Route::get('verify-email/{id}/{hash}', [AdminVerifyEmailController::class, '__invoke'])
         ->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
     Route::post('email/verification-notification', [AdminEmailVerificationNotificationController::class, 'store'])
