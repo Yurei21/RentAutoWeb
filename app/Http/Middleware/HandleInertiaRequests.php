@@ -32,11 +32,14 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            'auth' => fn () => Auth::guard('web')->check()
-                ? ['user' => Auth::guard('web')->user()]
-                : (Auth::guard('admin')->check()
-                ? ['admin' => Auth::guard('admin')->user()]
-            : null),
+            'auth' => [
+                'user' => Auth::guard('web')->check()
+                    ? Auth::guard('web')->user()
+                    : (Auth::guard('admin')->check()
+                        ? Auth::guard('admin')->user()
+                        : null),
+                'guard' => Auth::guard('web')->check() ? 'web' : (Auth::guard('admin')->check() ? 'admin' : null),
+            ],
         ];
     }
 }
