@@ -11,6 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
             __DIR__.'/../routes/adminAuth.php',
         ],
         commands: __DIR__.'/../routes/console.php',
+        channels: __DIR__.'/../routes/channels.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
