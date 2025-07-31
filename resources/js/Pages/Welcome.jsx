@@ -62,7 +62,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 <Card className="shadow-xl border dark:border-gray-800">
                                     <CardHeader className="text-center">
                                         <CardTitle className="text-3xl font-bold">
-                                            🚗 RentAuto — Your Reliable Car Rental Service
+                                            RentAuto — Your Reliable Car Rental Service
                                         </CardTitle>
                                         <p className="text-sm text-muted-foreground">
                                             Easily rent, manage, and return vehicles with transparency and speed.
