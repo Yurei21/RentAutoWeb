@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vehicles;
+use App\Models\Payments;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreVehiclesRequest;
-use App\Http\Requests\UpdateVehiclesRequest;
+use App\Http\Requests\StorePaymentsRequest;
+use App\Http\Requests\UpdatePaymentsRequest;
 
-class VehiclesController extends Controller
+class PaymentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class VehiclesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreVehiclesRequest $request)
+    public function store(StorePaymentsRequest $request)
     {
         //
     }
@@ -36,7 +36,7 @@ class VehiclesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Vehicles $vehicles)
+    public function show(Payments $payments)
     {
         //
     }
@@ -44,7 +44,7 @@ class VehiclesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vehicles $vehicles)
+    public function edit(Payments $payments)
     {
         //
     }
@@ -52,7 +52,7 @@ class VehiclesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateVehiclesRequest $request, Vehicles $vehicles)
+    public function update(UpdatePaymentsRequest $request, Payments $payments)
     {
         //
     }
@@ -60,7 +60,7 @@ class VehiclesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vehicles $vehicles)
+    public function destroy(Payments $payments)
     {
         //
     }
