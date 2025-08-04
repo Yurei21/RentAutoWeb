@@ -21,6 +21,6 @@ class AdminEmailVerificationPromptController extends Controller
         
         return $admin->hasVerifiedEmail()
             ? redirect()->intended(route('admin.dashboard', absolute: false))
-            : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
+            : Inertia::render('AdminAuth/VerifyEmail', ['status' => session('status')]);
     }
 }

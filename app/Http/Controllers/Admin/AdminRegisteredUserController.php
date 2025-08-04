@@ -20,7 +20,7 @@ class AdminRegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('AdminAuth/Register');
     }
 
     /**
@@ -31,13 +31,13 @@ class AdminRegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:admins,email',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $admin = Admin::create([
-            'name' => $request->name,
+            'username' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
