@@ -37,7 +37,7 @@ class AdminRegisteredUserController extends Controller
         ]);
 
         $admin = Admin::create([
-            'username' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

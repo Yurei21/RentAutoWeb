@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/admin-dashboard', function() {
     return Inertia::render('AdminDashboard');
-})->middleware(['auth:admin', 'verified'])->name('admin-dashboard');
+})->middleware(['auth:admin'])->name('admin.dashboard');
 
 Route::middleware('auth:admin')->group( function () {
     Route::get('/admin-profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
