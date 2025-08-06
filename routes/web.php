@@ -19,6 +19,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/admin-dashboard', function() {
+    return Inertia::render('AdminDashboard');
+})->middleware(['auth:admin', 'verified'])->name('admin-dashboard');
+
 Route::middleware('auth:admin')->group( function () {
     Route::get('/admin-profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/admin-profile', [AdminProfileController::class, 'update'])->name('profile.update');
