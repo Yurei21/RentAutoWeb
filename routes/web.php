@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,6 +29,10 @@ Route::middleware('auth:admin')->group( function () {
     Route::get('/admin-profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/admin-profile', [AdminProfileController::class, 'update'])->name('profile.update');
     Route::delete('/admin-profile', [AdminProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('vehicles', VehicleController::class);
+    Route::resource('users', UserController::class);
+    
 });
 
 Route::middleware('auth')->group(function () {
