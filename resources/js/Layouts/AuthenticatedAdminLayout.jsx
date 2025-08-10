@@ -31,20 +31,26 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
                                 <NavLink
-                                    href={route('vehicles')}
-                                    active={route().current('dashboard')}
+                                    href={route('users.index')}
+                                    active={route().current('users.index')}
                                 >
                                     Vehicles
                                 </NavLink>
                                 <NavLink
-                                    href={route('rentals')}
-                                    active={route().current('rentals')}
+                                    href={route('vehicles.index')}
+                                    active={route().current('vehicles.index')}
+                                >
+                                    Vehicles
+                                </NavLink>
+                                <NavLink
+                                    href={route('rentals.index')}
+                                    active={route().current('rentals.index')}
                                 >
                                     Rentals
                                 </NavLink>
                                 <NavLink
-                                    href={route('payments')}
-                                    active={route().current('payments')}
+                                    href={route('payments.index')}
+                                    active={route().current('payments.index')}
                                 >
                                     Payments
                                 </NavLink>
