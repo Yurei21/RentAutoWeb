@@ -8,6 +8,7 @@ use App\Http\Controllers\RentalsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -25,8 +26,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin-dashboard', function() {
+    /** @var \Illuminate\Contracts\Auth\MustVerifyEmail $admin */
+    $admin = Auth::guard('admin')->user();
+
+    if (! $admin || ! $admin->hasVerifiedEmail()) {
+        return redirect()->route('admin.verification.notice');
+    }
+
     return Inertia::render('AdminDashboard');
-})->middleware(['auth:admin', 'verified'] )->name('admin.dashboard');
+})->middleware('auth:admin')->name('admin.dashboard');
 
 Route::middleware('auth:admin')->group( function () {
     Route::get('/admin-profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
