@@ -16,7 +16,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'), {
+        post(route('admin.login'), {
             onFinish: () => reset('password'),
         });
     };
@@ -83,7 +83,7 @@ export default function Login({ status, canResetPassword }) {
                 <div className="mt-4 flex items-center justify-end">
                     {canResetPassword && (
                         <Link
-                            href={route('password.request')}
+                            href={route('admin.password.request')}
                             className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                         >
                             Forgot your password?
