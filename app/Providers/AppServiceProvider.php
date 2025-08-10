@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use App\Models\Admin;
+use Illuminate\Support\Facades\URL;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,25 +26,33 @@ class AppServiceProvider extends ServiceProvider
     {
         Vite::prefetch(concurrency: 3);
 
-        VerifyEmail::createUrlUsing(function ($notifiable, $token) {
+        VerifyEmail::createUrlUsing(function ($notifiable) {
             if ($notifiable instanceof Admin) {
-                return url(route('admin.verification.verify', [
-                    'token' => $token,
-                    'email' => $notifiable->email,
-                ], false));
+                return URL::temporarySignedRoute(
+                    'admin.verification.verify',
+                    now()->addMinutes(60),
+                    [
+                        'id' => $notifiable->getKey(),
+                        'hash' => sha1($notifiable->getEmailForVerification()),
+                    ]
+                );
             }
 
-            return url(route('verification.verify', [
-                'token' => $token,
-                'email' => $notifiable->email,
-            ], false));
+            return URL::temporarySignedRoute(
+                'verification.verify',
+                now()->addMinutes(60),
+                [
+                    'email' => $notifiable->email,
+                    'hash' => sha1($notifiable->getEmailForVerification()),
+                ]
+            );
         });
 
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
             if ($notifiable instanceof Admin) {
                 return url(route('admin.password.reset', [
-                    'token' => $token,
-                    'email' => $notifiable->email,
+                    'id' => $notifiable->getKey(),
+                    'hash' => sha1($notifiable->getEmailForVerification()),
                 ], false));
             }
 
