@@ -1,61 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# RentAuto - Car Rental System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+RentAuto is a full-stack car rental application built with Laravel 12, MySQL, React, and Inertia.js. It features multi-authentication for both users and admins, allowing seamless management and rental operations.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Multi-auth system:** Separate login and dashboards for users and admins
+- **User management:** Registration, profile management, password resets, email verification
+- **Admin management:** Admin login, profile, password resets, email verification
+- **Vehicle management:** CRUD operations on vehicles and their maintenance records
+- **Rental management:** Users can rent vehicles, track rental status, and payments
+- **Payments:** Support for multiple payment methods with tracking of fees and status
+- **Document uploads:** Users can upload required documents (Driver License, Passport, ID Card)
+- **Session management:** Secure session handling for users and admins
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologies Used
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend:** Laravel 12 with Breeze for authentication scaffolding
+- **Frontend:** React + Inertia.js for smooth SPA-like experience
+- **Database:** MySQL
+- **Authentication:** Laravel multi-auth with separate guards for users and admins
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/your-username/rentauto.git
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    Install dependencies:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Always show details
 
-## Laravel Sponsors
+composer install
+npm install && npm run dev
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Set up your .env file (copy from .env.example) with your DB credentials and other environment variables.
 
-### Premium Partners
+Run migrations and seeders:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Always show details
 
-## Contributing
+php artisan migrate --seed
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Serve the application:
 
-## Code of Conduct
+Always show details
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    php artisan serve
 
-## Security Vulnerabilities
+    Access the app:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        User portal: http://localhost:8000
 
-## License
+        Admin portal: http://localhost:8000/admin/login
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Usage
+
+    Users can register, log in, browse vehicles, rent cars, upload documents, and manage their profile.
+
+    Admins can log in, manage vehicles, rentals, payments, users, and perform maintenance records management.
+
+Notes
+
+    Ensure mail configuration is set up for email verification and password reset emails.
+
+    Session and authentication guards are configured separately for users and admins.
+
+Contributing
+
+Feel free to open issues or submit pull requests to improve RentAuto!
+License
+
+This project is open source and available under the MIT License.
+"""
