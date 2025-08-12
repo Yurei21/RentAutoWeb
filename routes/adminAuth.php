@@ -20,8 +20,7 @@ Route::prefix('admin')->name('admin.')->middleware('guest:admin')->group(functio
 
     Route::get('admin-forgot-password', [AdminPasswordResetLinkController::class, 'create'])->name('password.request');
     Route::post('admin-forgot-password', [AdminPasswordResetLinkController::class, 'store'])->name('password.email');
-    Route::post('admin-forgot-password', [AdminPasswordResetLinkController::class, 'store'])->name('password.store');
-
+    
     Route::get('admin-reset-password/{token}', [AdminNewPasswordController::class, 'create'])->name('password.reset');
     Route::post('admin-reset-password', [AdminNewPasswordController::class, 'store'])->name('password.store');
 });

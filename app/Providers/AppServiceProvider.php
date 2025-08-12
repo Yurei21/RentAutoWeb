@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
                     now()->addMinutes(60),
                     [
                         'id' => $notifiable->getKey(),
-                        'hash' => sha1($notifiable->getEmailForVerification()),
+                        'hash' => sha1(strtolower($notifiable->getEmailForVerification())),
                     ]
                 );
             }
@@ -42,8 +42,8 @@ class AppServiceProvider extends ServiceProvider
                 'verification.verify',
                 now()->addMinutes(60),
                 [
-                    'email' => $notifiable->email,
-                    'hash' => sha1($notifiable->getEmailForVerification()),
+                    'id' => $notifiable->getKey(),
+                    'hash' => sha1(strtolower($notifiable->getEmailForVerification())),
                 ]
             );
         });
@@ -51,8 +51,8 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
             if ($notifiable instanceof Admin) {
                 return url(route('admin.password.reset', [
-                    'id' => $notifiable->getKey(),
-                    'hash' => sha1($notifiable->getEmailForVerification()),
+                    'token' => $token,
+                    'email' => $notifiable->email,
                 ], false));
             }
 
