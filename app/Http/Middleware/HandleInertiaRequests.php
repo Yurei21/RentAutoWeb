@@ -35,7 +35,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => Auth::guard('web')->check() ? Auth::guard('web')->user() : null,
                 'admin' => Auth::guard('admin')->check() ? Auth::guard('admin')->user() : null,
-                'guard' => Auth::guard('web')->check() ? 'web' : (Auth::guard('admin')->check() ? 'admin' : null),
+                'guard' => Auth::guard('admin')->check() ? 'admin' : (Auth::guard('web')->check() ? 'web' : null),
             ],
         ];
     }

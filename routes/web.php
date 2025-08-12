@@ -26,13 +26,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin-dashboard', function() {
-    /** @var \Illuminate\Contracts\Auth\MustVerifyEmail $admin */
-    $admin = Auth::guard('admin')->user();
-
-    if (! $admin || ! $admin->hasVerifiedEmail()) {
-        return redirect()->route('admin.verification.notice');
-    }
-
     return Inertia::render('AdminDashboard');
 })->middleware('auth:admin')->name('admin.dashboard');
 
