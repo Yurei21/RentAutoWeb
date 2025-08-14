@@ -14,6 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         channels: __DIR__.'/../routes/channels.php',
         health: '/up',
     )
+    ->withMiddleware(function ($middleware) {
+        $middleware->alias([
+            'auth.admin' => \App\Http\Middleware\AdminAuthenticate::class,
+        ]);
+    })
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
@@ -23,3 +28,4 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
+    
