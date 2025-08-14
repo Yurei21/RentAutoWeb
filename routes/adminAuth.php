@@ -9,9 +9,17 @@ use App\Http\Controllers\Admin\AdminVerifyEmailController;
 use App\Http\Controllers\Admin\AdminPasswordController;
 use App\Http\Controllers\Admin\AdminPasswordResetLinkController;
 use App\Http\Controllers\Admin\AdminNewPasswordController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\RentalsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-Route::prefix('admin')->name('admin.')->middleware('guestadmin')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('guest:admin')->group(function () {
     Route::get('admin-register', [AdminRegisteredUserController::class, 'create'])->name('register');
     Route::post('admin-register', [AdminRegisteredUserController::class, 'store']);
 
@@ -25,7 +33,7 @@ Route::prefix('admin')->name('admin.')->middleware('guestadmin')->group(function
     Route::post('admin-reset-password', [AdminNewPasswordController::class, 'store'])->name('password.store');
 });
 
-Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     Route::get('admin-verify-email', AdminEmailVerificationPromptController::class)->name('verification.notice');
     Route::get('admin-verify-email/{id}/{hash}', [AdminVerifyEmailController::class, '__invoke'])
         ->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
@@ -38,4 +46,21 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::put('admin-password', [AdminPasswordController::class, 'update'])->name('password.update');
 
     Route::post('admin-logout', [AdminAuthenticatedSessionController::class, 'destroy'])->name('logout');
+});
+
+Route::get('/admin-dashboard', function() {
+    return Inertia::render('AdminDashboard');
+})->middleware('auth:admin')->name('admin.dashboard');
+
+Route::middleware('auth:admin')->group(function(){
+
+    Route::get('/admin-profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/admin-profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::delete('/admin-profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
+
+    Route::resource('vehicles', VehicleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('vehicles.maintenances', MaintenanceController::class);
+    Route::resource('rentals', RentalsController::class);
+    Route::resource('payments', PaymentsController::class);
 });
