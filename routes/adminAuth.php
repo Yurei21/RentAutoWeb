@@ -48,7 +48,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('admin-logout', [AdminAuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-Route::get('/admin-dashboard', function() {
+Route::get('/admin-dashboard', function()    {
     return Inertia::render('AdminDashboard');
 })->middleware('auth:admin')->name('admin.dashboard');
 
