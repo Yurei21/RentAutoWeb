@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('model');
             $table->string('brand');
-            $table->decimal('rent-price', '10', '2');
+            $table->decimal('rent_price', '10', '2');
             $table->enum('availability_status', ['Available', 'Rented', 'Under Maintenance'])->default('Available');
             $table->string('license_plate');
             $table->string('car_path');
