@@ -34,7 +34,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     href={route('users.index')}
                                     active={route().current('users.index')}
                                 >
-                                    Vehicles
+                                    Users
                                 </NavLink>
                                 <NavLink
                                     href={route('vehicles.index')}
