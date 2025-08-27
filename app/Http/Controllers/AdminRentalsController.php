@@ -52,7 +52,7 @@ class AdminRentalsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rentals $rentals)
+    public function update(UpdateAdminRentalsRequest $request, Rentals $rentals)
     {
         //
     }
