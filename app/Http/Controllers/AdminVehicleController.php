@@ -14,7 +14,7 @@ class AdminVehicleController extends Controller
      */
     public function index()
     {
-        //
+        return inertia("AdminVehicles/Index");
     }
 
     /**

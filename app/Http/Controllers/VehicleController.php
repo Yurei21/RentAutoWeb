@@ -14,7 +14,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        return inertia("Vehicle/Index");
+        
     }
 
     /**
