@@ -10,12 +10,11 @@ use App\Http\Controllers\Admin\AdminPasswordController;
 use App\Http\Controllers\Admin\AdminPasswordResetLinkController;
 use App\Http\Controllers\Admin\AdminNewPasswordController;
 use App\Http\Controllers\AdminProfileController;
-use App\Http\Controllers\MaintenanceController;
-use App\Http\Controllers\PaymentsController;
-use App\Http\Controllers\RentalsController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VehicleController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AdminMaintenanceController;
+use App\Http\Controllers\AdminPaymentsController;
+use App\Http\Controllers\AdminRentalsController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminVehicleController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -58,9 +57,9 @@ Route::middleware('auth:admin')->group(function(){
     Route::patch('/admin-profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::delete('/admin-profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
 
-    Route::resource('vehicles', VehicleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('vehicles.maintenances', MaintenanceController::class);
-    Route::resource('rentals', RentalsController::class);
-    Route::resource('payments', PaymentsController::class);
+    Route::resource('vehicles', AdminVehicleController::class);
+    Route::resource('users', AdminUserController::class);
+    Route::resource('vehicles.maintenances', AdminMaintenanceController::class);
+    Route::resource('rentals', AdminRentalsController::class);
+    Route::resource('payments', AdminPaymentsController::class);
 });
