@@ -57,9 +57,9 @@ Route::middleware('auth:admin')->group(function(){
     Route::patch('/admin-profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::delete('/admin-profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
 
-    Route::resource('vehicles', AdminVehicleController::class);
-    Route::resource('users', AdminUserController::class);
-    Route::resource('vehicles.maintenances', AdminMaintenanceController::class);
-    Route::resource('rentals', AdminRentalsController::class);
-    Route::resource('payments', AdminPaymentsController::class);
+    Route::resource('admin-vehicles', AdminVehicleController::class);
+    Route::resource('admin-users', AdminUserController::class);
+    Route::resource('admin-vehicles.maintenances', AdminMaintenanceController::class);
+    Route::resource('admin-rentals', AdminRentalsController::class);
+    Route::resource('admin-payments', AdminPaymentsController::class);
 });

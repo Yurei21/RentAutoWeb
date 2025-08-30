@@ -37,20 +37,20 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Users
                                 </NavLink>
                                 <NavLink
-                                    href={route('vehicles.index')}
-                                    active={route().current('vehicles.index')}
+                                    href={route('admin-vehicles.index')}
+                                    active={route().current('admin-vehicles.index')}
                                 >
                                     Vehicles
                                 </NavLink>
                                 <NavLink
-                                    href={route('rentals.index')}
-                                    active={route().current('rentals.index')}
+                                    href={route('admin-rentals.index')}
+                                    active={route().current('admin-rentals.index')}
                                 >
                                     Rentals
                                 </NavLink>
                                 <NavLink
-                                    href={route('payments.index')}
-                                    active={route().current('payments.index')}
+                                    href={route('admin-payments.index')}
+                                    active={route().current('admin-payments.index')}
                                 >
                                     Payments
                                 </NavLink>
