@@ -46,7 +46,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     href={route('admin-rentals.index')}
                                     active={route().current('admin-rentals.index')}
                                 >
-                                    Rental
+                                    Rentals
                                 </NavLink>
                                 <NavLink
                                     href={route('admin-payments.index')}
