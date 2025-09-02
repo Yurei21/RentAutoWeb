@@ -14,7 +14,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        //
+        return inertia("AdminUserControl/Index");
     }
 
     /**
