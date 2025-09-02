@@ -14,7 +14,7 @@ class AdminPaymentsController extends Controller
      */
     public function index()
     {
-        //
+        return inertia("AdminPayments/Index");
     }
 
     /**

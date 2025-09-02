@@ -14,7 +14,7 @@ class AdminRentalsController extends Controller
      */
     public function index()
     {
-        //
+        return inertia("AdminRentals/Index");
     }
 
     /**
