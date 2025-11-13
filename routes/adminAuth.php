@@ -52,7 +52,6 @@ Route::get('/admin-dashboard', function()    {
 })->middleware('auth:admin')->name('admin.dashboard');
 
 Route::middleware('auth:admin')->group(function(){
-
     Route::get('/admin-profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/admin-profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::delete('/admin-profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');

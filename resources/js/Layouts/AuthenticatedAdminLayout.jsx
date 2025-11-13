@@ -4,6 +4,7 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
+import DarkModeToggle from '@/Components/DarkModeToggle';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.admin;
@@ -31,8 +32,8 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
                                 <NavLink
-                                    href={route('users.index')}
-                                    active={route().current('users.index')}
+                                    href={route('admin-users.index')}
+                                    active={route().current('admin-users.index')}
                                 >
                                     Users
                                 </NavLink>
@@ -58,6 +59,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
+                            <DarkModeToggle/>
                             <div className="relative ms-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
