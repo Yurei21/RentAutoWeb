@@ -14,7 +14,7 @@ class AdminDocumentsController extends Controller
      */
     public function index()
     {
-        //
+        return inertia("Auth/Document");
     }
 
     /**
